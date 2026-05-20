@@ -656,16 +656,17 @@
 		<method name="grab_click_focus">
 			<return type="void" />
 			<description>
-				Creates an [InputEventMouseButton] that attempts to click the control. If the event is received, the control gains focus.
+				Routes mouse click events to this control for the current frame, overriding normal mouse focus.
+				[b]Note:[/b] This does not change the actual UI focus state of the node; calling [method has_focus] will still return [code]false[/code]. To give the node standard UI focus so it visually indicates focus and receives keyboard/joypad input, use [method grab_focus] instead.
 				[codeblocks]
 				[gdscript]
 				func _process(delta):
-					grab_click_focus() # When clicking another Control node, this node will be clicked instead.
+				grab_click_focus() # When clicking another Control node, this node will receive the click input instead.
 				[/gdscript]
 				[csharp]
 				public override void _Process(double delta)
 				{
-					GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
+				GrabClickFocus(); // When clicking another Control node, this node will receive the click input instead.
 				}
 				[/csharp]
 				[/codeblocks]
